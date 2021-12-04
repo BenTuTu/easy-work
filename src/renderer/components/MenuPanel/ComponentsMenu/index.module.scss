@@ -1,12 +1,22 @@
-.menuPanel {
+.componentsMenu {
+  width: 100%;
+
   .itemWrap {
     position: relative;
     width: 100%;
   }
 
-  .subMenuWrap {
+  .submenuWrap {
     width: 100%;
     z-index: 1;
+  }
+
+  .submenuList {
+    background-color: green;
+
+    .dragItem {
+      width: 100%;
+    }
   }
 
   .menuItem {
@@ -17,4 +27,3 @@
     width: 100%;
   }
 }
-

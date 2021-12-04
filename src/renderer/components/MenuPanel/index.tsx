@@ -1,20 +1,24 @@
-import React from 'react';
-import { useDrag } from 'react-dnd';
+import React, { memo } from 'react';
+import { 
+  Paper,
+  MenuList
+} from '@mui/material';
 
-import { ItemTypes } from '@/renderer/typing';
+import ElementMenu from './ElementMenu';
+import ComponentsMenu from './ComponentsMenu';
 
+import s from './index.module.scss';
 function MenuPanel() {
-  const [collected, drag, dragPreview]: any[] = useDrag(() => ({
-    type: ItemTypes.BOX,
-    item: {id: 1}
-  }), []);
-
   return (
-    <div>
-      MenuPanel
-      {collected.isDragging ? <section ref={dragPreview}></section>:<section ref={drag}>gooooood!!!</section>}
-    </div>
+    <section className={s.menuPanel}>
+      <Paper>
+        <MenuList>
+          <ElementMenu />
+          <ComponentsMenu />
+        </MenuList>
+      </Paper>
+    </section>
   )
 }
 
-export default MenuPanel;
+export default memo(MenuPanel);
