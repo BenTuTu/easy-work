@@ -1,0 +1,5 @@
+node_modules
+buildMain
+dist
+release
+buildRender

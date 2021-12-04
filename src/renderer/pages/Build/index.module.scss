@@ -1,0 +1,29 @@
+.wrap {
+  display: flex;
+  height: calc(100vh - 44px);
+  width: 100vw;
+  overflow: hidden;
+}
+
+.panel, .left, .right {
+  height: 100%;
+}
+
+.panel {
+  max-width: 375px;
+  min-width: 375px;
+  color: #FFFFFF;
+  background-color: green;
+}
+
+.left {
+  min-width: 300px;
+  color: #FFFFFF;
+  background-color: red;
+}
+
+.right {
+  flex: 1;
+  color: #FFFFFF;
+  background-color: blue;
+}
