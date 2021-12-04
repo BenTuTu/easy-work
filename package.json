@@ -23,7 +23,7 @@
     "vite": "^2.0.5",
     "concurrently": "^6.0.0",
     "electron": "^16.0.2",
-    "electron-builder": "^22.10.5",
+    "electron-builder": "22.14.5",
     "react-dnd": "^14.0.4",
     "react-dnd-html5-backend": "^14.0.2"
   },
