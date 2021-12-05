@@ -1,18 +1,18 @@
 class Store {
-  info = {
-    name: "btt",
-    age: 25,
-  };
+    info = {
+        name: 'btt',
+        age: 25,
+    };
 
-  name = "qianxuan";
+    name = 'qianxuan';
 
-  constructor() {
-    this.getName = this.getName.bind(this);
-  }
+    constructor() {
+        this.getName = this.getName.bind(this);
+    }
 
-  getName() {
-    return this.info;
-  }
+    getName() {
+        return this.info;
+    }
 }
 
 const store = new Store();

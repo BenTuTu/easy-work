@@ -8,23 +8,19 @@ import DrawPanel from 'components/DrawPanel';
 
 import s from './index.module.scss';
 function About(params: any) {
-  return (
-    <Split
-      className={s.wrap}
-      minSize={300}
-      gutterSize={6}
-    >
-      <DndProvider backend={HTML5Backend}>
-        <div className={s.left}>
-          <MenuPanel />
-        </div>
-        <div className={s.panel}>
-          <DrawPanel />
-        </div>
-      </DndProvider>
-      <div className={s.right}></div>
-    </Split>
-  );
+    return (
+        <Split className={s.wrap} minSize={300} gutterSize={6}>
+            <DndProvider backend={HTML5Backend}>
+                <div className={s.left}>
+                    <MenuPanel />
+                </div>
+                <div className={s.panel}>
+                    <DrawPanel />
+                </div>
+            </DndProvider>
+            <div className={s.right}></div>
+        </Split>
+    );
 }
 
 export default memo(About);

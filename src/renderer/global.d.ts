@@ -1,6 +1,6 @@
 interface Window {
-  appVersion: string;
-  ipcRenderer: Electron.IpcRenderer;
+    appVersion: string;
+    ipcRenderer: Electron.IpcRenderer;
 }
 
 declare module '*.json';

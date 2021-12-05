@@ -90,8 +90,6 @@ function ElementMenu() {
                     <section className={s.dragItem} ref={drag}>gooooood!!!</section>
                   )}
                 </MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
               </MenuList>
             </Paper>
           </Grow>
