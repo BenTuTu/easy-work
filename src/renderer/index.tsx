@@ -10,6 +10,7 @@ import {
 
 import App from "./pages/App";
 import About from "./pages/Build";
+import './rem';
 
 import './index.scss';
 

@@ -50,7 +50,7 @@ function ElementMenu() {
       <Button
         ref={anchorEleRef}
         id='composition-button'
-        className={s.menuItem}
+        className={s.menuBtn}
         aria-controls={open ? 'composition-menu' : undefined}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup='true'
