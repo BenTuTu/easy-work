@@ -1,6 +1,21 @@
-.wrap {
+.build {
+    
+    width: 100vw;
+    height: 100vh;
+}
+
+.top {
+    width: 100vw;
+    height: .44rem;
+
+    .backHome {
+        font-size: .14rem;
+    }
+}
+
+.content {
     display: flex;
-    height: calc(100vh - 44px);
+    height: calc(100vh - .44rem);
     width: 100vw;
     overflow: hidden;
 }

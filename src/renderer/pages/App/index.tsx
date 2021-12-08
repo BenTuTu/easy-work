@@ -1,15 +1,12 @@
 import React, { useEffect, memo } from 'react';
+import { Link } from 'react-router-dom';
 
-import store, { s1 } from '../../store';
-
+import s from './index.module.scss';
 const App = () => {
     useEffect(() => {
         Notification.requestPermission((status: string) => {
             console.log('🚀 ~ file: App.tsx ~ line 6 ~ Notification.requestPermission ~ status', status);
         });
-        store.info.name = 'xbb';
-        store.name = '模块值的引用';
-        console.log(s1);
 
         async function getMediaDevices() {
             try {
@@ -68,11 +65,21 @@ const App = () => {
     };
 
     return (
-        <div>
-            Current version: <span id="version">vX.Y.Z</span>
-            <div id="messages">messages:</div>
-            <button onClick={showNotify}>显示通知</button>
-            <button onClick={startDownload}>开始下载</button>
+        <div className={s.app}>
+            <section className={s.top}>
+                <div className={s.history}>
+                    <Link to="/build">工作区</Link>
+                    历史记录
+                </div>
+                <div className={s.template}>项目模板</div>
+            </section>
+            <section className={s.bottom}>
+                一些通知或者文档链接
+                Current version: <span id="version">vX.Y.Z</span>
+                <div id="messages">messages:</div>
+                <button onClick={showNotify}>显示通知</button>
+                <button onClick={startDownload}>开始下载</button>
+            </section>
         </div>
     );
 };

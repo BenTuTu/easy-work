@@ -1,3 +1,3 @@
-export const elementList = [
+export const ELEMENT_LIST = [
     
 ]

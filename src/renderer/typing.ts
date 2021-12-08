@@ -1,9 +1,11 @@
-import React from 'react';
-
 export enum ItemTypes {
     BOX = 'BOX',
+    COM = 'COM'
 }
 
 export interface DragElementItem {
-    type: React.ElementType;
+    type: ItemTypes;
+    nodeName: string;
+    isDelete: boolean;
+    children: DragElementItem;
 }
