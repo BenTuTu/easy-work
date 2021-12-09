@@ -1,31 +1,26 @@
 .elementMenu {
-  width: 100%;
-
-  .itemWrap {
-    position: relative;
     width: 100%;
-  }
 
-  .submenuWrap {
-    width: 100%;
-    z-index: 1;
-  }
-
-  .submenuList {
-    background-color: green;
-
-    .dragItem {
-      width: 100%;
-      font-size: .14rem;
+    .itemWrap {
+        position: relative;
+        width: 100%;
     }
-  }
 
-  .menuBtn {
-    width: 100%;
-    font-size: .14rem;
-  }
+    .submenuWrap {
+        width: 100%;
+        z-index: 1;
+    }
 
-  .paper {
-    width: 100%;
-  }
+    .submenuList {
+        background-color: green;
+    }
+
+    .menuBtn {
+        width: 100%;
+        font-size: 0.14rem;
+    }
+
+    .paper {
+        width: 100%;
+    }
 }

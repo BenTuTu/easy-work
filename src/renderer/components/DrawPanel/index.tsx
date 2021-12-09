@@ -1,30 +1,33 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { ItemTypes } from 'renderer/typing';
+import { DragElementData, DragElementItem, ItemTypes } from 'renderer/typing';
+import EasyApp from './EasyApp';
 import s from './index.module.scss';
 
 function DrawPanel() {
-    const [collectedProps, drop] = useDrop(
-        () => ({
-            accept: ItemTypes.BOX,
-            drop(item: unknown, monitor) {
-                console.log('🚀 ~ file: index.tsx ~ line 11 ~ drop ~ item', item);
-                const didDrop = monitor.didDrop();
-            },
-            collect: monitor => ({
-                isOver: monitor.isOver(),
-                isOverCurrent: monitor.isOver({ shallow: true }),
-            }),
-        }),
-        []
-    );
+	const [panelEleObj, setPanelEleObj] = useState<DragElementData>({ length: 0 });
 
-    return (
-        <div className={s.drawPanel} ref={drop}>
-            DrawPanel
-        </div>
-    );
+	const [collectedProps, drop] = useDrop(
+		() => ({
+			accept: ItemTypes.BOX,
+			drop(item: DragElementItem, monitor) {
+				const didDrop = monitor.didDrop();
+				setPanelEleObj({ '1': item, length: 1 });
+			},
+			collect: monitor => ({
+				isOver: monitor.isOver(),
+				isOverCurrent: monitor.isOver({ shallow: true }),
+			}),
+		}),
+		[]
+	);
+	// TODO: empty
+	return (
+		<div className={s.drawPanel} ref={drop}>
+			<EasyApp panelData={panelEleObj} />
+		</div>
+	);
 }
 
 export default memo(DrawPanel);
