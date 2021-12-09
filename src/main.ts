@@ -1,4 +1,4 @@
-import { BrowserWindow, app, Menu, ipcMain, session } from 'electron';
+import { BrowserWindow, app, ipcMain, globalShortcut } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import logger from 'electron-log';
@@ -80,8 +80,48 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 	sendStatusToWindow('Update downloaded; will install in 5 seconds');
 });
 
+app.on('ready', () => {
+	// 注册一个'CommandOrControl+Alt+X' 快捷键监听器
+	const ret = globalShortcut.register('CommandOrControl+Alt+X', () => {
+		console.log('CommandOrControl+X is pressed');
+		if (!mainWin.isMinimized()) {
+			mainWin.minimize();
+		} else {
+			mainWin.restore();
+		}
+	});
+	if (!ret) {
+		console.log('registration failed');
+	}
+	// 检查快捷键是否注册成功
+	console.log(globalShortcut.isRegistered('CommandOrControl+Alt+X'));
+});
+
 app.on('window-all-closed', () => {
 	app.quit();
+});
+
+// window-minimize
+ipcMain.on('window-min', () => {
+	console.log('minimize');
+	mainWin.minimize();
+});
+
+// window-maximize
+ipcMain.on('window-max', () => {
+	console.log('maximize');
+	if (process.platform === 'darwin') {
+		// Mac OS
+	} else if (process.platform === 'win32') {
+		// Windows System
+		mainWin.isMaximized() ? mainWin.restore() : mainWin.maximize();
+	}
+});
+
+// widnow-close
+ipcMain.on('window-close', () => {
+	console.log('close');
+	mainWin.close();
 });
 
 app.whenReady().then(res => {
