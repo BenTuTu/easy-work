@@ -1,4 +1,4 @@
-import { BrowserWindow, app, BrowserView, Menu, ipcMain } from 'electron';
+import { BrowserWindow, app, BrowserView, Menu, ipcMain, globalShortcut } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import logger from 'electron-log';
@@ -80,13 +80,53 @@ autoUpdater.on('update-downloaded', (ev, info) => {
     sendStatusToWindow('Update downloaded; will install in 5 seconds');
 });
 
+app.on('ready', () => {
+    // 注册一个'CommandOrControl+Alt+X' 快捷键监听器
+    const ret = globalShortcut.register('CommandOrControl+Alt+X', () => {
+        console.log('CommandOrControl+X is pressed');
+        if (!mainWin.isMinimized()) {
+            mainWin.minimize();
+        } else {
+            mainWin.restore();
+        }
+    })
+    if (!ret) {
+        console.log('registration failed');
+    }
+    // 检查快捷键是否注册成功
+    console.log(globalShortcut.isRegistered('CommandOrControl+Alt+X'));
+});
+
 app.on('window-all-closed', () => {
     app.quit();
+});
+
+// window-minimize
+ipcMain.on('window-min', () => {
+    console.log('minimize');
+    mainWin.minimize();
+});
+
+// window-maximize
+ipcMain.on('window-max', () => {
+    console.log('maximize');
+    if (process.platform === 'darwin') { // Mac OS
+
+    } else if (process.platform === 'win32'){ // Windows System
+        mainWin.isMaximized() ? mainWin.restore() : mainWin.maximize();
+    }
+});
+
+// widnow-close
+ipcMain.on('window-close', () => {
+    console.log('close');
+    mainWin.close();
 });
 
 app.whenReady().then(res => {
     mainWin = new BrowserWindow({
         show: false,
+        frame: false,
         height: 800,
         width: 975,
         minHeight: 800,
@@ -107,7 +147,7 @@ app.whenReady().then(res => {
         const dirList = fs.readdirSync(path.resolve(app.getAppPath()));
         mainLog.info('🚀 ~ file: index.ts ~ line 35 ~ app.whenReady ~ dirList', dirList);
     }
-
+    // mainWin.webContents.openDevTools(); // open devTools
     sayHi();
 
     // Create the Menu
