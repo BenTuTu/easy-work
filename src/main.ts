@@ -1,4 +1,4 @@
-import { BrowserWindow, app, ipcMain, globalShortcut } from 'electron';
+import { BrowserWindow, app, ipcMain, session, globalShortcut } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import logger from 'electron-log';
@@ -139,6 +139,7 @@ app.whenReady().then(res => {
 		width: 975,
 		minHeight: 800,
 		minWidth: 975,
+		frame: false,
 		backgroundColor: '#fff',
 		webPreferences: {
 			preload: path.resolve(app.getAppPath(), './buildMain/preload.js'),
