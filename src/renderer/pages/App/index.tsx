@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react';
 import React, { useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -83,4 +84,4 @@ const App = () => {
 	);
 };
 
-export default memo(App);
+export default observer(App);

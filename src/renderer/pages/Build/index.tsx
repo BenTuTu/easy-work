@@ -1,15 +1,16 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import Split from 'react-split';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import { observer } from 'mobx-react';
 
 import MenuPanel from 'components/MenuPanel';
 import DrawPanel from 'components/DrawPanel';
 
 import s from './index.module.scss';
-function About(params: any) {
+function Build(params: any) {
 	const history = useHistory();
 	const backHome = useCallback(() => {
 		history.goBack();
@@ -37,4 +38,4 @@ function About(params: any) {
 	);
 }
 
-export default memo(About);
+export default observer(Build);

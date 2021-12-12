@@ -2,37 +2,36 @@ html,
 body,
 ul,
 li {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 body,
 #root {
-    height: 100vh;
-    background-color: #ffd5a2;
+	height: 100vh;
+	background-color: #ffd5a2;
 }
 
 .gutter {
-    background-color: #eee;
-    background-repeat: no-repeat;
-    background-position: 50%;
+	background-color: #eee;
+	background-repeat: no-repeat;
+	background-position: 50%;
 }
 
 .gutter.gutter-horizontal {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
-    cursor: col-resize;
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+	cursor: col-resize;
 }
 
 .navBar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #91C8FF;
-    .navItem {
-        display: flex;
-        .menuItem {
-            height: 30px;
-            z-index: 1000;
-        }
-    }
+	display: flex;
+	justify-content: space-between;
+	background-color: #91c8ff;
+	.navItem {
+		display: flex;
+		.menuItem {
+			height: 30px;
+			z-index: 1000;
+		}
+	}
 }
-

@@ -4,6 +4,8 @@
   "description": "use vite and electron-build to build electron",
   "main": "buildMain/main.js",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-proposal-decorators": "^7.16.4",
     "@emotion/react": "11.7.0",
     "@emotion/styled": "11.6.0",
     "@mui/icons-material": "5.2.1",
@@ -12,12 +14,15 @@
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.2",
     "@types/react-router-dom": "5.1.7",
+    "@types/uuid": "^8.3.3",
     "concurrently": "6.0.0",
     "cross-env": "7.0.3",
     "electron": "16.0.2",
     "electron-builder": "22.10.5",
     "electron-log": "4.3.4",
     "electron-updater": "4.3.8",
+    "mobx": "^6.3.8",
+    "mobx-react": "^7.2.1",
     "react": "17.0.1",
     "react-dnd": "14.0.4",
     "react-dnd-html5-backend": "14.0.2",
@@ -29,6 +34,7 @@
     "rollup-plugin-typescript": "1.0.1",
     "sass": "1.43.4",
     "typescript": "4.2.3",
+    "uuid": "^8.3.2",
     "vite": "2.7.1"
   },
   "scripts": {
@@ -38,7 +44,7 @@
     "build:main": "vite build -c ./vite.main.config.ts",
     "build": "concurrently \"npm:build:*\"",
     "server": "vite preview",
-    "dev": "concurrently \"npm:dev:*\"",
+    "dev": "yarn dev:renderer & yarn dev:main",
     "postinstall": "npx electron-builder install-app-deps",
     "pack:mac": "cross-env NODE_ENV=production yarn build && npx electron-builder build --mac --publish never",
     "pack:win": "cross-env NODE_ENV=production yarn build && npx electron-builder build --win --publish never",
@@ -110,5 +116,8 @@
   },
   "keywords": [],
   "author": "BenTutTu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react": "^1.1.1"
+  }
 }

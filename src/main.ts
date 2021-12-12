@@ -125,14 +125,14 @@ ipcMain.on('window-close', () => {
 });
 
 app.whenReady().then(res => {
-	session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-		callback({
-			responseHeaders: {
-				...details.responseHeaders,
-				'Content-Security-Policy': ["script-src 'self'", 'http://127.0.0.1'],
-			},
-		});
-	});
+	// session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+	// 	callback({
+	// 		responseHeaders: {
+	// 			...details.responseHeaders,
+	// 			'Content-Security-Policy': ["script-src 'self'", 'http://127.0.0.1'],
+	// 		},
+	// 	});
+	// });
 	mainWin = new BrowserWindow({
 		show: false,
 		height: 800,

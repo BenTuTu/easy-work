@@ -3,6 +3,7 @@ import React from 'react';
 export enum ItemTypes {
 	BOX = 'BOX',
 	COM = 'COM',
+	MENU = 'MENU',
 }
 
 export interface DragElementItem {
@@ -14,6 +15,7 @@ export interface DragElementItem {
 	node?: React.ReactNode;
 	pos?: string;
 	props?: any;
+	uuid?: string;
 }
 
 export interface DragElementData {

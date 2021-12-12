@@ -1,6 +1,7 @@
 import React from 'react';
 import { DragElementItem, ItemTypes } from '../typing';
 
-export const ELEMENT_LIST: DragElementItem[] = [
-	{ type: ItemTypes.BOX, nodeName: 'div', node: <div />, isDelete: false, children: { length: 0 }, isCanDrop: true },
+export const ELEMENT_LIST: Partial<DragElementItem>[] = [
+	{ type: ItemTypes.MENU, nodeName: 'div', isCanDrop: true },
+	{ type: ItemTypes.MENU, nodeName: 'span', isCanDrop: false },
 ];

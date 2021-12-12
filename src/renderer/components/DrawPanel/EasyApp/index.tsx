@@ -1,17 +1,37 @@
-import React, { memo } from 'react';
+import React from 'react';
+import { observer } from 'mobx-react';
 
-import { DragElementData, DragElementItem } from 'renderer/typing';
-import generateView from 'renderer/services/generateView';
+import EasyView from 'renderer/services/generateView';
+import { DrawPanelMap, Store, useStore } from 'renderer/store';
 
 import s from './index.module.scss';
-function EasyApp({ panelData }: { panelData: DragElementData }) {
-	if (!panelData.length) {
+function generateViewList(panelItemMap: DrawPanelMap) {
+	const viewList = Object.values(panelItemMap).map(item => {
+		if (typeof item !== 'number') {
+			if (item.children?.length) {
+				return (
+					<EasyView key={item.uuid} nodeData={item}>
+						{generateViewList(item.children)}
+					</EasyView>
+				);
+			}
+			return <EasyView key={item.uuid} nodeData={item} />;
+		}
+		return null;
+	});
+	return viewList;
+}
+
+function EasyApp() {
+	const { panelItemMap } = useStore() as Store;
+	const len = panelItemMap.length;
+	if (!len) {
 		return null;
 	}
 
-	const nodeConf = panelData[1] as DragElementItem;
-	const drawItemView = generateView(nodeConf);
-	return <div className={s.easyApp}>{drawItemView}</div>;
+	const viewList = generateViewList(panelItemMap);
+
+	return <div className={s.easyApp}>{viewList}</div>;
 }
 
-export default memo(EasyApp);
+export default observer(EasyApp);

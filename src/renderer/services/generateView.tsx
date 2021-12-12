@@ -1,40 +1,52 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { DragElementItem } from '../typing';
-
-const MENU_ITEM_SCHEMA: { [ele: string]: { render(props: any): React.ReactNode } } = {
+import DrawItemService from './drawItem';
+interface RenderProps {
+	[ele: string]: { render(props: any, ref: any, children: React.ReactNode): React.ReactNode };
+}
+const MENU_ITEM_SCHEMA: RenderProps = {
 	div: {
-		render(props: any) {
-			// const { drop, ...otherProps } = props || {};
-			// if (drop) {
-			// 	return <div {...otherProps} ref={props.drop} />;
-			// }
-			return <div {...props} />;
+		render(props: any, ref, children) {
+			return (
+				<div {...props} ref={ref}>
+					{children}
+				</div>
+			);
+		},
+	},
+	span: {
+		render(props: any, ref, children) {
+			return (
+				<span {...props} ref={ref}>
+					{children}
+				</span>
+			);
 		},
 	},
 };
-function generateView(nodeData: DragElementItem) {
+function GenerateView({ nodeData, children }: React.PropsWithChildren<{ nodeData: DrawItemService }>) {
 	const eleRef = useRef<HTMLElement>(null);
-	const { nodeName, isCanDrop, type } = nodeData || {};
+	const { nodeName, isCanDrop, type, props } = nodeData || {};
 	const [collected, drag, dragPreview]: any[] = useDrag(
 		() => ({
 			type: type,
+			item: nodeData,
 		}),
-		[]
+		[type]
 	);
 	const [, drop] = useDrop(
 		() => ({
 			accept: type,
 			drop(item: DragElementItem, monitor) {
 				console.log('🚀 ~ file: generateView.tsx ~ line 19 ~ drop ~ item', item);
-				const didDrop = monitor.didDrop();
 			},
 			collect: monitor => ({
 				isOver: monitor.isOver(),
 				isOverCurrent: monitor.isOver({ shallow: true }),
 			}),
 		}),
-		[]
+		[type]
 	);
 	if (isCanDrop) {
 		drag(drop(eleRef));
@@ -45,13 +57,9 @@ function generateView(nodeData: DragElementItem) {
 	if (!nodeSchema) {
 		return null;
 	}
-	const style: React.CSSProperties = {
-		width: '100%',
-		height: '.5rem',
-		backgroundColor: 'CaptionText',
-	};
-	const ele: React.ReactNode = nodeSchema.render({ style });
-	return <>{collected.isDragging ? <section ref={dragPreview} /> : <section ref={eleRef}>{ele}</section>}</>;
+
+	const ele: React.ReactNode = nodeSchema.render(props || {}, eleRef, children);
+	return <>{ele}</>;
 }
 
-export default generateView;
+export default memo(GenerateView);
