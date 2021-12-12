@@ -1,123 +1,124 @@
 {
-  "name": "easy-work",
-  "version": "0.1.0",
-  "description": "use vite and electron-build to build electron",
-  "main": "buildMain/main.js",
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.16.0",
-    "@babel/plugin-proposal-decorators": "^7.16.4",
-    "@emotion/react": "11.7.0",
-    "@emotion/styled": "11.6.0",
-    "@mui/icons-material": "5.2.1",
-    "@mui/material": "5.2.3",
-    "@types/node": "14.14.35",
-    "@types/react": "17.0.3",
-    "@types/react-dom": "17.0.2",
-    "@types/react-router-dom": "5.1.7",
-    "@types/uuid": "^8.3.3",
-    "concurrently": "6.0.0",
-    "cross-env": "7.0.3",
-    "electron": "16.0.2",
-    "electron-builder": "22.10.5",
-    "electron-log": "4.3.4",
-    "electron-updater": "4.3.8",
-    "mobx": "^6.3.8",
-    "mobx-react": "^7.2.1",
-    "react": "17.0.1",
-    "react-dnd": "14.0.4",
-    "react-dnd-html5-backend": "14.0.2",
-    "react-dom": "17.0.1",
-    "react-router-dom": "5.2.0",
-    "react-split": "2.0.13",
-    "rollup-plugin-commonjs": "10.1.0",
-    "rollup-plugin-node-resolve": "5.2.0",
-    "rollup-plugin-typescript": "1.0.1",
-    "sass": "1.43.4",
-    "typescript": "4.2.3",
-    "uuid": "^8.3.2",
-    "vite": "2.7.1"
-  },
-  "scripts": {
-    "dev:main": "vite build --mode staging -c ./vite.main.config.ts && electron .",
-    "dev:renderer": "vite",
-    "build:renderer": "vite build",
-    "build:main": "vite build -c ./vite.main.config.ts",
-    "build": "concurrently \"npm:build:*\"",
-    "server": "vite preview",
-    "dev": "yarn dev:renderer & yarn dev:main",
-    "postinstall": "npx electron-builder install-app-deps",
-    "pack:mac": "cross-env NODE_ENV=production yarn build && npx electron-builder build --mac --publish never",
-    "pack:win": "cross-env NODE_ENV=production yarn build && npx electron-builder build --win --publish never",
-    "pack:linux": "cross-env NODE_ENV=production yarn build && npx electron-builder build --linux --publish never"
-  },
-  "build": {
-    "publish": {
-      "provider": "generic",
-      "url": "http://10.112.200.76:8080/"
-    },
-    "productName": "vite_electron",
-    "appId": "com.jenifer.vite_electron",
-    "directories": {
-      "buildResources": "resources",
-      "output": "release"
-    },
-    "files": [
-      "buildRender/",
-      "buildMain/",
-      "node_modules/",
-      "package.json"
-    ],
-    "mac": {
-      "type": "distribution",
-      "hardenedRuntime": true,
-      "gatekeeperAssess": false,
-      "category": "public.app-category.developer-tools",
-      "target": [
-        "zip",
-        "dmg"
-      ],
-      "icon": "./assets/icon.png"
-    },
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ],
-      "icon": "./assets/icon.png"
-    },
-    "nsis": {
-      "oneClick": false,
-      "menuCategory": true,
-      "allowToChangeInstallationDirectory": true
-    },
-    "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "category": "Development"
-    },
-    "extraResources": [
-      "./assets/**"
-    ],
-    "asar": true
-  },
-  "keywords": [],
-  "author": "BenTutTu",
-  "license": "ISC",
-  "dependencies": {
-    "@vitejs/plugin-react": "^1.1.1"
-  }
+	"name": "easy-work",
+	"version": "0.1.0",
+	"description": "use vite and electron-build to build electron",
+	"main": "buildMain/main.js",
+	"devDependencies": {
+		"@babel/plugin-proposal-class-properties": "^7.16.0",
+		"@babel/plugin-proposal-decorators": "^7.16.4",
+		"@emotion/react": "11.7.0",
+		"@emotion/styled": "11.6.0",
+		"@mui/icons-material": "5.2.1",
+		"@mui/material": "5.2.3",
+		"@types/node": "14.14.35",
+		"@types/react": "17.0.3",
+		"@types/react-dom": "17.0.2",
+		"@types/react-router-dom": "5.1.7",
+		"@types/uuid": "^8.3.3",
+		"concurrently": "6.0.0",
+		"cross-env": "7.0.3",
+		"electron": "16.0.2",
+		"electron-builder": "22.10.5",
+		"electron-log": "4.3.4",
+		"electron-updater": "4.3.8",
+		"mobx": "^6.3.8",
+		"mobx-react": "^7.2.1",
+		"kill-port": "^1.6.1",
+		"react": "17.0.1",
+		"react-dnd": "14.0.4",
+		"react-dnd-html5-backend": "14.0.2",
+		"react-dom": "17.0.1",
+		"react-router-dom": "5.2.0",
+		"react-split": "2.0.13",
+		"rollup-plugin-commonjs": "10.1.0",
+		"rollup-plugin-node-resolve": "5.2.0",
+		"rollup-plugin-typescript": "1.0.1",
+		"sass": "1.43.4",
+		"typescript": "4.2.3",
+		"uuid": "^8.3.2",
+		"vite": "2.7.1"
+	},
+	"scripts": {
+		"dev:main": "vite build --mode staging -c ./vite.main.config.ts && electron .",
+		"dev:renderer": "vite",
+		"build:renderer": "vite build",
+		"build:main": "vite build -c ./vite.main.config.ts",
+		"build": "concurrently \"npm:build:*\"",
+		"server": "vite preview",
+		"dev": "concurrently \"npm:dev:*\"",
+		"postinstall": "npx electron-builder install-app-deps",
+		"pack:mac": "cross-env NODE_ENV=production yarn build && npx electron-builder build --mac --publish never",
+		"pack:win": "cross-env NODE_ENV=production yarn build && npx electron-builder build --win --publish never",
+		"pack:linux": "cross-env NODE_ENV=production yarn build && npx electron-builder build --linux --publish never"
+	},
+	"build": {
+		"publish": {
+			"provider": "generic",
+			"url": "http://10.112.200.76:8080/"
+		},
+		"productName": "vite_electron",
+		"appId": "com.jenifer.vite_electron",
+		"directories": {
+			"buildResources": "resources",
+			"output": "release"
+		},
+		"files": [
+			"buildRender/",
+			"buildMain/",
+			"node_modules/",
+			"package.json"
+		],
+		"mac": {
+			"type": "distribution",
+			"hardenedRuntime": true,
+			"gatekeeperAssess": false,
+			"category": "public.app-category.developer-tools",
+			"target": [
+				"zip",
+				"dmg"
+			],
+			"icon": "./assets/icon.png"
+		},
+		"dmg": {
+			"contents": [
+				{
+					"x": 130,
+					"y": 220
+				},
+				{
+					"x": 410,
+					"y": 220,
+					"type": "link",
+					"path": "/Applications"
+				}
+			]
+		},
+		"win": {
+			"target": [
+				"nsis"
+			],
+			"icon": "./assets/icon.png"
+		},
+		"nsis": {
+			"oneClick": false,
+			"menuCategory": true,
+			"allowToChangeInstallationDirectory": true
+		},
+		"linux": {
+			"target": [
+				"AppImage"
+			],
+			"category": "Development"
+		},
+		"extraResources": [
+			"./assets/**"
+		],
+		"asar": true
+	},
+	"keywords": [],
+	"author": "BenTutTu",
+	"license": "ISC",
+	"dependencies": {
+		"@vitejs/plugin-react": "^1.1.1"
+	}
 }

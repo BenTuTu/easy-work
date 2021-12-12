@@ -4,6 +4,7 @@ import fs from 'fs';
 import logger from 'electron-log';
 import { sayHi } from './main/test';
 import { autoUpdater } from 'electron-updater';
+import killPort from 'kill-port';
 
 const mainLog = logger.scope('main.index');
 autoUpdater.logger = mainLog;
@@ -97,7 +98,12 @@ app.on('ready', () => {
 	console.log(globalShortcut.isRegistered('CommandOrControl+Alt+X'));
 });
 
-app.on('window-all-closed', () => {
+app.on('window-all-closed', async () => {
+	try {
+		if (['staging', 'dev'].includes(process.env.NODE_ENV!)) {
+			await killPort(3000, 'tcp');
+		}
+	} catch (error) {}
 	app.quit();
 });
 
