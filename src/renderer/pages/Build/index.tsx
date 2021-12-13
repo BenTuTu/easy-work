@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
+import TitleBar from 'components/TitleBar';
 import MenuPanel from 'components/MenuPanel';
 import DrawPanel from 'components/DrawPanel';
 
@@ -19,6 +20,7 @@ function Build(params: any) {
 	return (
 		<section className={s.build}>
 			<div className={s.top}>
+				<TitleBar />
 				<Button className={s.backHome} onClick={backHome}>
 					返回
 				</Button>

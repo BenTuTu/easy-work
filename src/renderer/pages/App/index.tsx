@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
-
+import TitleBar from 'components/TitleBar';
 import s from './index.module.scss';
 const App = () => {
 	useEffect(() => {
@@ -69,6 +69,7 @@ const App = () => {
 		<div className={s.app}>
 			<section className={s.top}>
 				<div className={s.history}>
+					<TitleBar />
 					<Link to="/build">工作区</Link>
 					历史记录
 				</div>
