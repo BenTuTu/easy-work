@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
-import React, { useEffect } from 'react';
-import { useDrop } from 'react-dnd';
+import React, { forwardRef, useImperativeHandle } from 'react';
+import { DropTarget, DropTargetMonitor } from 'react-dnd';
 
-import { DragElementItem, ItemTypes } from 'renderer/typing';
+import { ItemTypes } from 'renderer/typing';
 import { Store, useStore } from 'renderer/store';
 import DrawItemService from 'renderer/services/drawItem';
 
@@ -10,35 +10,53 @@ import EasyApp from './EasyApp';
 
 import s from './index.module.scss';
 
-function DrawPanel() {
-	const { addItem } = useStore() as Store;
+const DrawPanel = forwardRef<HTMLDivElement, any>(function DrawPanel(
+	{ isOver, isOverCurrent, connectDropTarget, item },
+	ref
+) {
+	const { addItem, panelItemMap } = useStore() as Store;
 
-	const [collectedProps, drop] = useDrop(
+	useImperativeHandle(
+		ref as any,
 		() => ({
-			accept: [ItemTypes.BOX, ItemTypes.MENU],
-			drop(item: DragElementItem, monitor) {
-				if (item?.uuid) {
+			onDrop: (onChild: boolean) => {
+				if (item?.uuid || onChild) {
 					return;
 				}
-				const itemObj = new DrawItemService(item as DragElementItem);
-				addItem(itemObj);
+				const pos = panelItemMap.childLength + 1;
+				const itemObj = new DrawItemService({ ...item, pos });
+				addItem(itemObj, '');
 			},
-			collect: monitor => ({
-				isOver: monitor.isOver(),
-				item: monitor.getItem(),
-				isOverCurrent: monitor.isOver({ shallow: true }),
-				isDropped: monitor.didDrop(),
-			}),
 		}),
-		[addItem]
+		[addItem, item]
 	);
 
-	// TODO: empty
-	return (
-		<div className={s.drawPanel} ref={drop}>
+	return connectDropTarget(
+		<div className={s.drawPanel}>
 			<EasyApp />
 		</div>
 	);
-}
+});
 
-export default observer(DrawPanel);
+export default DropTarget(
+	[ItemTypes.BOX, ItemTypes.MENU],
+	{
+		drop(props: any, monitor: DropTargetMonitor, component: any) {
+			if (!component) {
+				return;
+			}
+			const hasDroppedOnChild = monitor.didDrop();
+			if (hasDroppedOnChild) {
+				return;
+			}
+
+			component.onDrop(hasDroppedOnChild);
+		},
+	},
+	(connect, monitor) => ({
+		connectDropTarget: connect.dropTarget(),
+		isOver: monitor.isOver(),
+		isOverCurrent: monitor.isOver({ shallow: true }),
+		item: monitor.getItem(),
+	})
+)(observer(DrawPanel));

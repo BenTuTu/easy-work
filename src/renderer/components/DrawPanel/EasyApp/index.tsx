@@ -2,35 +2,42 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import EasyView from 'renderer/services/generateView';
-import { DrawPanelMap, Store, useStore } from 'renderer/store';
+import { Store, useStore } from 'renderer/store';
+import { DragElementItem, DragElementData } from 'renderer/typing';
 
 import s from './index.module.scss';
-function generateViewList(panelItemMap: DrawPanelMap) {
-	const viewList = Object.values(panelItemMap).map(item => {
-		if (typeof item !== 'number') {
-			if (item.children?.length) {
-				return (
-					<EasyView key={item.uuid} nodeData={item}>
-						{generateViewList(item.children)}
-					</EasyView>
-				);
-			}
-			return <EasyView key={item.uuid} nodeData={item} />;
-		}
+function generateViewList(panelItemMap: DragElementData, targetItem: DragElementItem) {
+	const list = [];
+	const { childLength, pos, uuid } = targetItem || {};
+	if (!childLength) {
 		return null;
-	});
-	return viewList;
+	}
+	for (let idx = 1; idx <= childLength; idx++) {
+		const curPos = pos ? `${pos}-${idx}` : idx;
+		const element = panelItemMap[curPos] as DragElementItem;
+		const { childLength: len, uuid: id } = element || {};
+		if (len) {
+			const eleList = generateViewList(panelItemMap, element);
+			list.push(
+				<EasyView key={id} nodeData={element}>
+					{eleList}
+				</EasyView>
+			);
+		} else {
+			list.push(<EasyView key={id} nodeData={element} />);
+		}
+	}
+	return [...list];
 }
 
 function EasyApp() {
 	const { panelItemMap } = useStore() as Store;
-	const len = panelItemMap.length;
-	if (!len) {
+	const childLength = panelItemMap.childLength as number;
+	if (!childLength) {
 		return null;
 	}
 
-	const viewList = generateViewList(panelItemMap);
-
+	const viewList = generateViewList(panelItemMap, { pos: '', childLength } as any);
 	return <div className={s.easyApp}>{viewList}</div>;
 }
 

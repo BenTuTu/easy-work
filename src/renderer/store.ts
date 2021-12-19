@@ -4,13 +4,10 @@ import { MobXProviderContext } from 'mobx-react';
 import { DragElementData } from './typing';
 import DrawItemService from './services/drawItem';
 
-export interface DrawPanelMap {
-	[prop: string]: DrawItemService | number;
-	length: number;
-}
 export class Store {
-	@observable panelItemMap: DrawPanelMap = {
-		length: 0,
+	@observable panelItemMap: DragElementData = {
+		pos: '',
+		childLength: 0,
 	};
 
 	@observable time: any = 1234;
@@ -20,14 +17,20 @@ export class Store {
 	}
 
 	@action
-	addItem = (itemService: DrawItemService) => {
-		const len = this.panelItemMap.length;
-		this.panelItemMap.length = len + 1;
+	addItem = (itemService: DrawItemService, parentPos: string) => {
+		const { pos, childLength } = itemService || {};
+		let len = childLength;
+		if (parentPos === '') {
+			len = this.panelItemMap.childLength;
+			this.panelItemMap.childLength = len + 1;
+		} else {
+			len = (this.panelItemMap[parentPos] as DrawItemService).childLength;
+			(this.panelItemMap[parentPos] as DrawItemService).childLength = len + 1;
+		}
 		this.panelItemMap = {
 			...this.panelItemMap,
-			[len + 1]: itemService,
+			[pos]: itemService,
 		};
-		console.log('addItem', this.panelItemMap);
 	};
 
 	@action
