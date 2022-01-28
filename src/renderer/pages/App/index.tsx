@@ -1,10 +1,7 @@
 import { observer } from 'mobx-react';
-import React, { useEffect, memo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import Particles from 'react-tsparticles';
 import type { Container, Engine } from 'tsparticles';
-
-import TitleBar from 'components/TitleBar';
 
 import { CONFIG } from './config';
 
@@ -84,7 +81,6 @@ const App = () => {
 	return (
 		<div className={s.app}>
 			<Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={CONFIG} />
-			<TitleBar />
 			<section className={s.operation}>
 				<div className={s.addProject}></div>
 				<div className={s.search}></div>

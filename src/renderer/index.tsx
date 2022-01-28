@@ -2,6 +2,7 @@ import React from 'react';
 import { MobXProviderContext, observer } from 'mobx-react';
 import ReactDom from 'react-dom';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import TitleBar from '@/renderer/components/TitleBar';
 
 import { Store } from 'renderer/store';
 
@@ -15,6 +16,7 @@ import s from './index.module.scss';
 const Root = observer(() => {
 	return (
 		<BrowserRouter>
+			<TitleBar />
 			<div className={s.root}>
 				<section className={s.leftBar}>
 					<LeftBar />
