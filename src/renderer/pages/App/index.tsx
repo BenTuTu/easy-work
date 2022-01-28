@@ -1,9 +1,17 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
+import Particles from 'react-tsparticles';
+import type { Container, Engine } from 'tsparticles';
+
 import TitleBar from 'components/TitleBar';
+
+import { CONFIG } from './config';
+
 import s from './index.module.scss';
 const App = () => {
+	useEffect(() => {}, []);
+
 	useEffect(() => {
 		Notification.requestPermission((status: string) => {
 			console.log('🚀 ~ file: App.tsx ~ line 6 ~ Notification.requestPermission ~ status', status);
@@ -47,16 +55,14 @@ const App = () => {
 		return nf;
 	};
 	const showNotify = () => {
-		const nf = createNotification();
-		setInterval(createNotification, 10000);
-
-		nf.onclick = () => {
-			console.log('点击的通知');
-		};
-
-		nf.onclose = () => {
-			console.log('🚀 ~ file: App.tsx ~ line 20 ~ showNotify ~ Notification', Notification);
-		};
+		// const nf = createNotification();
+		// setInterval(createNotification, 10000);
+		// nf.onclick = () => {
+		// 	console.log('点击的通知');
+		// };
+		// nf.onclose = () => {
+		// 	console.log('🚀 ~ file: App.tsx ~ line 20 ~ showNotify ~ Notification', Notification);
+		// };
 	};
 
 	const startDownload = () => {
@@ -65,17 +71,34 @@ const App = () => {
 		});
 	};
 
+	const particlesInit = async (main: Engine) => {
+		console.log(main);
+
+		// you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+	};
+
+	const particlesLoaded = async (container: Container) => {
+		console.log(container);
+	};
+
 	return (
 		<div className={s.app}>
-			<section className={s.top}>
-				<div className={s.history}>
-					<TitleBar />
-					<Link to="/build">工作区</Link>
-					历史记录
-				</div>
-				<div className={s.template}>项目模板</div>
+			<Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={CONFIG} />
+			<TitleBar />
+			<section className={s.operation}>
+				<div className={s.addProject}></div>
+				<div className={s.search}></div>
 			</section>
-			<section className={s.bottom}>
+			<section className={s.web}>
+				<div className={s.title}>Web</div>
+				{/* TODO: item card */}
+				<div className={s.list}>
+					{[1, 2, 3, 4].map(i => (
+						<div key={i} className={s.card}></div>
+					))}
+				</div>
+			</section>
+			<section className={s.h5}>
 				一些通知或者文档链接 Current version: <span id="version">vX.Y.Z</span>
 				<div id="messages">messages:</div>
 				<button onClick={showNotify}>显示通知</button>

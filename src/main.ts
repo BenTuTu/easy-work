@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import logger from 'electron-log';
 import { sayHi } from './main/test';
-import { windowsChange } from './main/winChange'
+import { windowsChange } from './main/winChange';
 import { autoUpdater } from 'electron-updater';
 import killPort from 'kill-port';
 
@@ -102,10 +102,10 @@ app.whenReady().then(res => {
 	// });
 	mainWin = new BrowserWindow({
 		show: false,
-		height: 800,
-		width: 975,
-		minHeight: 800,
-		minWidth: 975,
+		height: 720,
+		width: 1280,
+		minHeight: 720,
+		minWidth: 1280,
 		frame: false,
 		backgroundColor: '#fff',
 		webPreferences: {

@@ -1,28 +1,106 @@
+/* ---- reset ---- */
+body {
+	margin: 0;
+	font: normal 75% Arial, Helvetica, sans-serif;
+}
+
+canvas {
+	display: block;
+}
+
+/* ---- tsparticles container ---- */
+#tsparticles {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
 .app {
-  width: 100vw;
-  height: 100vh;
+	width: 100%;
+	height: calc(100vh - 30px);
 
-  .top {
-    display: flex;
-    width: 100vw;
-    height: 70vh;
-    background-color: #fff;
+	& > section {
+		position: relative;
+		z-index: 2;
+	}
 
-    .history {
-      width: 70vw;
-      height: 70vh;
-      background-color: #91c8ff;
-    }
+	.operation {
+		position: relative;
+		display: flex;
+		align-items: center;
+		height: 60px;
 
-    .template {
-      width: 30vw;
-      height: 70vh;
-      background-color: #ffa978;
+		.addProject {
+			position: absolute;
+			right: 70px;
+			color: white;
+			cursor: pointer;
+			transition: transform 0.3s ease-out;
 
-    }
-  }
+			&::after {
+				display: block;
+				content: '\ed21';
+				font-size: 14px;
+				padding: 5px;
+				font-family: 'easy-work';
+				border-radius: 50%;
+				background: linear-gradient(180deg, #08c4b4 0%, #0cd14d 100%);
+			}
 
-  .bottom {
-    height: 30vh;
-  }
+			&:hover {
+				transform: scale(1.5);
+				transition: transform 0.3s ease-in;
+			}
+		}
+
+		.search {
+			position: absolute;
+			right: 24px;
+
+			&::after {
+				content: '\e8ef';
+				font-size: 24px;
+				font-family: 'easy-work';
+			}
+		}
+	}
+
+	.web {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: calc(50vh - 45px);
+		padding: 0 24px 24px 24px;
+		background-color: #ffffff00;
+	}
+
+	.h5 {
+		height: calc(50vh - 45px);
+	}
+
+	.title {
+		height: 24px;
+		color: #000000;
+		font-family: Roboto;
+		font-weight: regular;
+		font-size: 20px;
+		line-height: normal;
+		letter-spacing: 0px;
+		text-align: left;
+		margin: 8px 0;
+	}
+}
+
+.list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.card {
+	width: 282px;
+	height: 244px;
+	border-radius: 8px;
+	background: #ffffff;
+	border: 1px solid #0000004c;
+	box-shadow: 2px 6px 4px 0px #0000003f;
 }

@@ -2716,6 +2716,14 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-tsparticles@^1.39.0:
+  version "1.39.0"
+  resolved "https://registry.npmmirror.com/react-tsparticles/download/react-tsparticles-1.39.0.tgz#b95816e2549f17278534d0e4f84fe104a22e7a4e"
+  integrity sha512-PkLYNVJsRv7zIG9dhZnGGk5g6nHVMMx7c524L4Hu1+IftlX1lBsHJa3SJctGM+wzEmDn0oUGv3xyFoe2QkK+3w==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    tsparticles "^1.39.0"
+
 react@17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
@@ -3218,6 +3226,11 @@ tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.14.1.tgz?cache=0&sync_timestamp=1609887438976&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftslib%2Fdownload%2Ftslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=
+
+tsparticles@^1.39.0:
+  version "1.39.0"
+  resolved "https://registry.npmmirror.com/tsparticles/download/tsparticles-1.39.0.tgz#7b85fbd0acabd4434363c020da94a85e0f2ce463"
+  integrity sha512-UeCY5YeUU2j7eyBPwQOAeIK+TeQQkaHNpRCGQ2axdOXEFt6lm3TffgzsLSsFciEn0TrugWhNf+nO1zliWKAYcQ==
 
 tunnel@^0.0.6:
   version "0.0.6"

@@ -22,3 +22,14 @@ body,
 	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
 	cursor: col-resize;
 }
+
+@font-face {
+	font-family: 'easy-work'; /* Project id 3115487 */
+	src: url('//at.alicdn.com/t/font_3115487_68ewnyzdofe.woff2?t=1641386611228') format('woff2'),
+		url('//at.alicdn.com/t/font_3115487_68ewnyzdofe.woff?t=1641386611228') format('woff'),
+		url('//at.alicdn.com/t/font_3115487_68ewnyzdofe.ttf?t=1641386611228') format('truetype');
+}
+
+* {
+	box-sizing: border-box;
+}

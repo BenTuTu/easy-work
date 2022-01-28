@@ -1,0 +1,13 @@
+.root {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+
+	.leftBar {
+		width: 80px;
+	}
+
+	.rightContent {
+		width: calc(100vw - 80px);
+	}
+}

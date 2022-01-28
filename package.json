@@ -21,9 +21,9 @@
 		"electron-builder": "22.10.5",
 		"electron-log": "4.3.4",
 		"electron-updater": "4.3.8",
+		"kill-port": "^1.6.1",
 		"mobx": "^6.3.8",
 		"mobx-react": "^7.2.1",
-		"kill-port": "^1.6.1",
 		"react": "17.0.1",
 		"react-dnd": "14.0.4",
 		"react-dnd-html5-backend": "14.0.2",
@@ -119,6 +119,7 @@
 	"author": "BenTutTu",
 	"license": "ISC",
 	"dependencies": {
-		"@vitejs/plugin-react": "^1.1.1"
+		"@vitejs/plugin-react": "^1.1.1",
+		"react-tsparticles": "^1.39.0"
 	}
 }

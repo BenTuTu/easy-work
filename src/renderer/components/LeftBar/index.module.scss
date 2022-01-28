@@ -1,0 +1,66 @@
+.leftBar {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 80px;
+	height: 100%;
+	background: linear-gradient(180deg, rgba(57, 61, 255, 0.87) 0%, #259aff 100%, #259aff 100%);
+
+	.logo {
+		width: 80px;
+		height: 80px;
+
+		& > img {
+			width: 80px;
+			// height: 80px;
+			object-fit: cover;
+			-webkit-user-drag: none;
+		}
+	}
+
+	.icons {
+		margin-bottom: 24px;
+	}
+
+	.zone,
+	.setting {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40px;
+		width: 80px;
+		margin-top: 24px;
+		cursor: pointer;
+		color: white;
+
+		&:hover {
+			color: black;
+			background-color: #fff;
+			border-radius: 0 8px 8px 0;
+		}
+	}
+
+	.zone {
+		&::after {
+			content: '\eb8a';
+			font-size: 24px;
+			font-family: 'easy-work';
+		}
+	}
+
+	.toBuild {
+		-webkit-appearance: none;
+		text-decoration: none;
+	}
+
+	.setting {
+		&::after {
+			content: '\eb61';
+			font-size: 24px;
+			font-family: 'easy-work';
+		}
+	}
+}
