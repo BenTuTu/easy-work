@@ -1,0 +1,47 @@
+.navBar {
+	display: flex;
+	justify-content: space-between;
+	background-color: #24272f;
+	position: fixed;
+	width: 100vw;
+
+	.navItem {
+		display: flex;
+
+		.menuItem {
+			height: 30px;
+			z-index: 1000;
+
+			.menuBtn {
+				height: 30px;
+				font-size: 14px;
+			}
+			.menuBtn:hover {
+				background-color: #52586b;
+			}
+		}
+	}
+
+	.rightBtn:hover {
+		background-color: #52586b;
+	}
+
+	.rightIcon {
+		font-size: 14px;
+		color: #afafaf;
+	}
+
+	.closeBtn:hover {
+		background-color: #52586b;
+	}
+
+	.closeIcon {
+		font-size: 16px;
+		color: #afafaf;
+	}
+}
+
+.blockFill {
+	width: 100vw;
+	height: 30px;
+}

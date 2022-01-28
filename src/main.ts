@@ -3,7 +3,9 @@ import path from 'path';
 import fs from 'fs';
 import logger from 'electron-log';
 import { sayHi } from './main/test';
+import { windowsChange } from './main/winChange'
 import { autoUpdater } from 'electron-updater';
+import killPort from 'kill-port';
 
 const mainLog = logger.scope('main.index');
 autoUpdater.logger = mainLog;
@@ -80,59 +82,24 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 	sendStatusToWindow('Update downloaded; will install in 5 seconds');
 });
 
-app.on('ready', () => {
-	// 注册一个'CommandOrControl+Alt+X' 快捷键监听器
-	const ret = globalShortcut.register('CommandOrControl+Alt+X', () => {
-		console.log('CommandOrControl+X is pressed');
-		if (!mainWin.isMinimized()) {
-			mainWin.minimize();
-		} else {
-			mainWin.restore();
+app.on('window-all-closed', async () => {
+	try {
+		if (['staging', 'dev'].includes(process.env.NODE_ENV!)) {
+			await killPort(3000, 'tcp');
 		}
-	});
-	if (!ret) {
-		console.log('registration failed');
-	}
-	// 检查快捷键是否注册成功
-	console.log(globalShortcut.isRegistered('CommandOrControl+Alt+X'));
-});
-
-app.on('window-all-closed', () => {
+	} catch (error) {}
 	app.quit();
 });
 
-// window-minimize
-ipcMain.on('window-min', () => {
-	console.log('minimize');
-	mainWin.minimize();
-});
-
-// window-maximize
-ipcMain.on('window-max', () => {
-	console.log('maximize');
-	if (process.platform === 'darwin') {
-		// Mac OS
-	} else if (process.platform === 'win32') {
-		// Windows System
-		mainWin.isMaximized() ? mainWin.restore() : mainWin.maximize();
-	}
-});
-
-// widnow-close
-ipcMain.on('window-close', () => {
-	console.log('close');
-	mainWin.close();
-});
-
 app.whenReady().then(res => {
-	session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-		callback({
-			responseHeaders: {
-				...details.responseHeaders,
-				'Content-Security-Policy': ["script-src 'self'", 'http://127.0.0.1'],
-			},
-		});
-	});
+	// session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+	// 	callback({
+	// 		responseHeaders: {
+	// 			...details.responseHeaders,
+	// 			'Content-Security-Policy': ["script-src 'self'", 'http://127.0.0.1'],
+	// 		},
+	// 	});
+	// });
 	mainWin = new BrowserWindow({
 		show: false,
 		height: 800,
@@ -158,6 +125,7 @@ app.whenReady().then(res => {
 	}
 
 	sayHi();
+	windowsChange(mainWin);
 
 	// Create the Menu
 	// const menu = Menu.buildFromTemplate(template);

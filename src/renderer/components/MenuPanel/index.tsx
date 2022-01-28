@@ -6,16 +6,16 @@ import ComponentsMenu from './ComponentsMenu';
 
 import s from './index.module.scss';
 function MenuPanel() {
-    return (
-        <section className={s.menuPanel}>
-            <Paper>
-                <MenuList>
-                    <ElementMenu />
-                    <ComponentsMenu />
-                </MenuList>
-            </Paper>
-        </section>
-    );
+	return (
+		<section className={s.menuPanel}>
+			<Paper>
+				<MenuList>
+					<ElementMenu />
+					{/* <ComponentsMenu /> */}
+				</MenuList>
+			</Paper>
+		</section>
+	);
 }
 
 export default memo(MenuPanel);
