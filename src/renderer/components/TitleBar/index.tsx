@@ -71,7 +71,6 @@ function TitleBar(props: any) {
 					</IconButton>
 				</div>
 			</nav>
-			{/* <div className={s.blockFill}></div> */}
 		</>
 	);
 }

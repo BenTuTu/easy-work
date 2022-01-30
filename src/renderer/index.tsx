@@ -16,12 +16,12 @@ import s from './index.module.scss';
 const Root = observer(() => {
 	return (
 		<BrowserRouter>
-			<TitleBar />
 			<div className={s.root}>
 				<section className={s.leftBar}>
 					<LeftBar />
 				</section>
 				<section className={s.rightContent}>
+					<TitleBar />
 					<Switch>
 						<Route exact path="/build">
 							<Build />

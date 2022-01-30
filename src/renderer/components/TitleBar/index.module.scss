@@ -2,7 +2,10 @@
 	display: flex;
 	justify-content: space-between;
 	background-color: #24272f;
-	width: calc(100vw - 80px);
+	position: relative;
+	width: 100%;
+	z-index: 2;
+	-webkit-app-region: drag;
 
 	.navItem {
 		display: flex;

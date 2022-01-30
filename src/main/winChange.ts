@@ -23,12 +23,7 @@ export function windowsChange(mainWin: any) {
 
 	// window-maximize
 	ipcMain.on('window-max', () => {
-		if (process.platform === 'darwin') {
-			// Mac OS
-		} else if (process.platform === 'win32') {
-			// Windows System
-			mainWin.isMaximized() ? mainWin.restore() : mainWin.maximize();
-		}
+		mainWin.setFullScreen(!mainWin.isFullScreen());
 	});
 
 	// widnow-close
