@@ -13,8 +13,9 @@
 		"@types/node": "14.14.35",
 		"@types/react": "17.0.3",
 		"@types/react-dom": "17.0.2",
-		"@types/react-router-dom": "5.1.7",
+		"@types/react-router-dom": "^5.3.3",
 		"@types/uuid": "^8.3.3",
+		"axios": "^0.26.0",
 		"concurrently": "6.0.0",
 		"cross-env": "7.0.3",
 		"electron": "16.0.2",
@@ -24,12 +25,15 @@
 		"kill-port": "^1.6.1",
 		"mobx": "^6.3.8",
 		"mobx-react": "^7.2.1",
+		"notistack": "^2.0.3",
+		"npm-run-all": "^4.1.5",
 		"react": "17.0.1",
 		"react-dnd": "14.0.4",
 		"react-dnd-html5-backend": "14.0.2",
 		"react-dom": "17.0.1",
-		"react-router-dom": "5.2.0",
+		"react-router-dom": "6",
 		"react-split": "2.0.13",
+		"react-tsparticles": "^1.42.1",
 		"rollup-plugin-commonjs": "10.1.0",
 		"rollup-plugin-node-resolve": "5.2.0",
 		"rollup-plugin-typescript": "1.0.1",
@@ -39,13 +43,13 @@
 		"vite": "2.7.1"
 	},
 	"scripts": {
-		"dev:main": "vite build --mode staging -c ./vite.main.config.ts && electron .",
 		"dev:renderer": "vite",
+		"dev:main": "vite build --mode staging -c ./vite.main.config.ts && electron .",
 		"build:renderer": "vite build",
 		"build:main": "vite build -c ./vite.main.config.ts",
 		"build": "concurrently \"npm:build:*\"",
 		"server": "vite preview",
-		"dev": "concurrently \"npm:dev:*\"",
+		"dev": "chcp 65001 && npm-run-all -p dev:renderer dev:main",
 		"postinstall": "npx electron-builder install-app-deps",
 		"pack:mac": "cross-env NODE_ENV=production yarn build && npx electron-builder build --mac --publish never",
 		"pack:win": "cross-env NODE_ENV=production yarn build && npx electron-builder build --win --publish never",
@@ -119,7 +123,6 @@
 	"author": "BenTutTu",
 	"license": "ISC",
 	"dependencies": {
-		"@vitejs/plugin-react": "^1.1.1",
-		"react-tsparticles": "^1.39.0"
+		"@vitejs/plugin-react": "^1.1.1"
 	}
 }

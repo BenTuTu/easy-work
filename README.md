@@ -15,7 +15,7 @@
 
 ## Install
 
-- **If you have installation or compilation issues with this project, please see [our debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400)**
+-   **If you have installation or compilation issues with this project, please see [our debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400)**
 
 First, clone the repo via git and install dependencies:
 
@@ -44,6 +44,7 @@ To package apps for the special platform:
 ```
 
 ## Docs
+
 TODO
 [docs and guides here]()
 
@@ -53,4 +54,4 @@ TODO
 
 ## Maintainers
 
-- [Ben TuTu](https://github.com/amilajack)
+-   [Ben TuTu](https://github.com/amilajack)

@@ -3,11 +3,14 @@ import React, { useEffect } from 'react';
 import Particles from 'react-tsparticles';
 import type { Container, Engine } from 'tsparticles';
 
+import { UserService } from 'api/renderer/user';
+import { useLogin } from 'renderer/hooks/useLogin';
+
 import { CONFIG } from './config';
 
 import s from './index.module.scss';
 const App = () => {
-	useEffect(() => {}, []);
+	useLogin();
 
 	useEffect(() => {
 		Notification.requestPermission((status: string) => {
@@ -78,12 +81,18 @@ const App = () => {
 		console.log(container);
 	};
 
+	const getUserInfo = async () => {
+		try {
+			const res = await UserService.getUserInfo('8f7031fd-94b4-4c39-9621-79d793b16a1e');
+		} catch (error) {}
+	};
+
 	return (
 		<div className={s.app}>
 			<Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={CONFIG} />
 			<section className={s.operation}>
 				<div className={s.addProject}></div>
-				<div className={s.search}></div>
+				<div className={s.search} onClick={getUserInfo}></div>
 			</section>
 			<section className={s.web}>
 				<div className={s.title}>Web</div>

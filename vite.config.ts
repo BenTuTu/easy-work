@@ -1,8 +1,8 @@
+import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
-console.log(resolve(__dirname, 'src/renderer/components'));
 
-export default {
+export default defineConfig({
 	base: './',
 	publicDir: 'renderPublic',
 	plugins: [
@@ -21,6 +21,7 @@ export default {
 			main: resolve(__dirname, 'src/main'),
 			renderer: resolve(__dirname, 'src/renderer'),
 			components: resolve(__dirname, 'src/renderer/components'),
+			api: resolve(__dirname, 'src/api'),
 		},
 	},
 	build: {
@@ -41,4 +42,4 @@ export default {
 		},
 		outDir: 'buildRender',
 	},
-};
+});

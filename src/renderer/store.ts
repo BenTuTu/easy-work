@@ -12,6 +12,8 @@ export class Store {
 
 	@observable time: any = 1234;
 
+	@observable isLogin = false;
+
 	constructor() {
 		makeObservable(this);
 	}
@@ -38,6 +40,11 @@ export class Store {
 
 	@action
 	moveItem = () => {};
+
+	@action
+	setIsLogin = (isLogin: boolean) => {
+		this.isLogin = isLogin;
+	};
 }
 
 export const useStore = () => useContext(MobXProviderContext);

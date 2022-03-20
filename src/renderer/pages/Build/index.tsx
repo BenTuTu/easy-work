@@ -3,7 +3,7 @@ import Split from 'react-split';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Button } from '@mui/material';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import MenuPanel from 'components/MenuPanel';
@@ -11,9 +11,9 @@ import DrawPanel from 'components/DrawPanel';
 
 import s from './index.module.scss';
 function Build(params: any) {
-	const history = useHistory();
+	const navigateTo = useNavigate();
 	const backHome = useCallback(() => {
-		history.goBack();
+		navigateTo(-1);
 	}, []);
 
 	return (
