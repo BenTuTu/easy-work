@@ -49,7 +49,7 @@
 		"build:main": "vite build -c ./vite.main.config.ts",
 		"build": "concurrently \"npm:build:*\"",
 		"server": "vite preview",
-		"dev": "chcp 65001 && npm-run-all -p dev:renderer dev:main",
+		"dev": "npm-run-all -p dev:renderer dev:main",
 		"postinstall": "npx electron-builder install-app-deps",
 		"pack:mac": "cross-env NODE_ENV=production yarn build && npx electron-builder build --mac --publish never",
 		"pack:win": "cross-env NODE_ENV=production yarn build && npx electron-builder build --win --publish never",
