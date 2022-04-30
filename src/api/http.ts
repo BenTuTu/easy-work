@@ -7,16 +7,16 @@ const instance = axios.create({
 	// withCredentials: true,
 });
 
-function getCookie(name: string) {
-	let arr,
-		reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
+// function getCookie(name: string) {
+// 	let arr,
+// 		reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
 
-	if ((arr = document.cookie.match(reg))) {
-		return unescape(arr[2]);
-	}
+// 	if ((arr = document.cookie.match(reg))) {
+// 		return unescape(arr[2]);
+// 	}
 
-	return null;
-}
+// 	return null;
+// }
 
 // 添加请求拦截器
 instance.interceptors.request.use(

@@ -15,13 +15,18 @@
 		"@types/react-dom": "17.0.2",
 		"@types/react-router-dom": "^5.3.3",
 		"@types/uuid": "^8.3.3",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
 		"axios": "^0.26.0",
+		"captcha-mini": "^1.1.0",
 		"concurrently": "6.0.0",
 		"cross-env": "7.0.3",
 		"electron": "16.0.2",
 		"electron-builder": "22.10.5",
 		"electron-log": "4.3.4",
 		"electron-updater": "4.3.8",
+		"eslint-plugin-react": "^7.29.4",
+		"eslint-plugin-react-hooks": "^4.5.0",
 		"kill-port": "^1.6.1",
 		"mobx": "^6.3.8",
 		"mobx-react": "^7.2.1",
@@ -50,6 +55,7 @@
 		"build": "concurrently \"npm:build:*\"",
 		"server": "vite preview",
 		"dev": "npm-run-all -p dev:renderer dev:main",
+		"dev:win": "chcp 65001 && npm-run-all -p dev:renderer dev:main",
 		"postinstall": "npx electron-builder install-app-deps",
 		"pack:mac": "cross-env NODE_ENV=production yarn build && npx electron-builder build --mac --publish never",
 		"pack:win": "cross-env NODE_ENV=production yarn build && npx electron-builder build --win --publish never",
@@ -123,6 +129,7 @@
 	"author": "BenTutTu",
 	"license": "ISC",
 	"dependencies": {
-		"@vitejs/plugin-react": "^1.1.1"
+		"@vitejs/plugin-react": "^1.1.1",
+		"eslint": "^8.14.0"
 	}
 }

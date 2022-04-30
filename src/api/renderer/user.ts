@@ -2,8 +2,8 @@ import { http } from '../http';
 
 export interface CreateUserDto {
 	id?: string;
-	username: string;
-	password: string;
+	username?: string;
+	password?: string;
 	avatar?: string;
 	email?: string;
 	role?: string;
@@ -12,8 +12,8 @@ export interface CreateUserDto {
 }
 
 export interface LoginParams {
-	username: string;
-	password: string;
+	username?: string;
+	password?: string;
 }
 
 export class UserService {

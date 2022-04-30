@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 import { Box, Button, TextField } from '@mui/material';
 import { useSnackbar } from 'notistack';
@@ -7,37 +7,34 @@ import { useNavigate } from 'react-router-dom';
 import { UserService } from 'api/renderer/user';
 import { Store, useStore } from 'renderer/store';
 
+import RegisterDialog from './RegisterDialog';
+import { useBaseData } from './useBaseData';
+import { loginStore } from './store';
+
 import s from './index.module.scss';
 
 function Login() {
 	const { setIsLogin } = useStore() as Store;
+	const { toggleRegisterDialog } = loginStore;
 
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const { username, password, changeUsername, changePassword, usernameHelperText, passwordHelperText, isValidate } =
+		useBaseData();
+
 	const { enqueueSnackbar } = useSnackbar();
 	const navigateTo = useNavigate();
 
-	const register = async () => {
-		try {
-			const params = {
-				username,
-				password,
-			};
-			await UserService.register(params);
-			enqueueSnackbar('注册成功，前往登录吧', { variant: 'success' });
-		} catch (error) {
-			enqueueSnackbar('注册失败', { variant: 'error' });
-		}
-	};
-
 	const login = async () => {
 		try {
+			if (!isValidate) {
+				enqueueSnackbar('请检查输入', { variant: 'error' });
+				return;
+			}
 			const params = {
 				username,
 				password,
 			};
-			const res = await UserService.login(params);
-			// enqueueSnackbar('登录成功', { variant: 'success', autoHideDuration: 2000 });
+			await UserService.login(params);
+
 			navigateTo('./app', { replace: true });
 			setIsLogin(true);
 			// location.href = '/app';
@@ -46,14 +43,8 @@ function Login() {
 		}
 	};
 
-	const changeUsername = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const value = e.currentTarget.value;
-		setUsername(value);
-	};
-
-	const changePassword = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const value = e.currentTarget.value;
-		setPassword(value);
+	const openRegisterDialog = () => {
+		toggleRegisterDialog(true);
 	};
 
 	return (
@@ -62,21 +53,31 @@ function Login() {
 				<img src="assets/renderer/leftImg.jpg" alt="" />
 			</section>
 			<Box className={s.rightForm}>
-				<TextField value={username} className={s.username} label="用户名" onChange={changeUsername} />
 				<TextField
+					required
+					value={username}
+					className={s.username}
+					label="用户名/手机号"
+					onChange={changeUsername}
+					helperText={usernameHelperText && <div className={s.validateError}>{usernameHelperText}</div>}
+				/>
+				<TextField
+					required
 					value={password}
 					className={s.password}
 					type="password"
 					label="密码"
 					onChange={changePassword}
+					helperText={passwordHelperText && <div className={s.validateError}>{passwordHelperText}</div>}
 				/>
 				<Box className={s.footer}>
-					<Button className={s.register} onClick={register}>
+					<Button className={s.register} onClick={openRegisterDialog}>
 						注册
 					</Button>
 					<Button onClick={login}>登录</Button>
 				</Box>
 			</Box>
+			<RegisterDialog />
 		</div>
 	);
 }
