@@ -8,6 +8,7 @@ import { UserService } from 'api/renderer/user';
 import { Store, useStore } from 'renderer/store';
 
 import RegisterDialog from './RegisterDialog';
+import SwipeVerifyDialog from './SwipeVerifyDialog';
 import { useBaseData } from './useBaseData';
 import { loginStore } from './store';
 
@@ -15,7 +16,7 @@ import s from './index.module.scss';
 
 function Login() {
 	const { setIsLogin } = useStore() as Store;
-	const { toggleRegisterDialog } = loginStore;
+	const { toggleRegisterDialog, toggleSwipeVerifyDialog } = loginStore;
 
 	const { username, password, changeUsername, changePassword, usernameHelperText, passwordHelperText, isValidate } =
 		useBaseData();
@@ -35,8 +36,11 @@ function Login() {
 			};
 			await UserService.login(params);
 
-			navigateTo('./app', { replace: true });
-			setIsLogin(true);
+			toggleSwipeVerifyDialog(true);
+
+			// navigateTo('./app', { replace: true });
+			// setIsLogin(true);
+
 			// location.href = '/app';
 		} catch (error: any) {
 			enqueueSnackbar(error?.message || '登录失败', { variant: 'error', autoHideDuration: 2000 });
@@ -78,6 +82,7 @@ function Login() {
 				</Box>
 			</Box>
 			<RegisterDialog />
+			<SwipeVerifyDialog />
 		</div>
 	);
 }
