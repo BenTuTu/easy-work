@@ -8,7 +8,7 @@ import { UserService } from 'api/renderer/user';
 import { Store, useStore } from 'renderer/store';
 
 import RegisterDialog from './RegisterDialog';
-import SwipeVerifyDialog from './SwipeVerifyDialog';
+import SlideVerifyDialog from './SlideVerifyDialog';
 import { useBaseData } from './useBaseData';
 import { loginStore } from './store';
 
@@ -16,7 +16,7 @@ import s from './index.module.scss';
 
 function Login() {
 	const { setIsLogin } = useStore() as Store;
-	const { toggleRegisterDialog, toggleSwipeVerifyDialog } = loginStore;
+	const { toggleRegisterDialog, toggleSlideVerifyDialog } = loginStore;
 
 	const { username, password, changeUsername, changePassword, usernameHelperText, passwordHelperText, isValidate } =
 		useBaseData();
@@ -36,7 +36,7 @@ function Login() {
 			};
 			await UserService.login(params);
 
-			toggleSwipeVerifyDialog(true);
+			toggleSlideVerifyDialog(true);
 
 			// navigateTo('./app', { replace: true });
 			// setIsLogin(true);
@@ -82,7 +82,7 @@ function Login() {
 				</Box>
 			</Box>
 			<RegisterDialog />
-			<SwipeVerifyDialog />
+			<SlideVerifyDialog />
 		</div>
 	);
 }

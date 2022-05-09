@@ -2,7 +2,7 @@ import { observable, action, runInAction, makeObservable } from 'mobx';
 
 class LoginStore {
 	@observable isShowRegisterDialog = false;
-	@observable isShowSwipeVerifyDialog = false;
+	@observable isShowSlideVerifyDialog = false;
 
 	constructor() {
 		makeObservable(this);
@@ -17,12 +17,12 @@ class LoginStore {
 		this.isShowRegisterDialog = !this.isShowRegisterDialog;
 	};
 
-	toggleSwipeVerifyDialog = (isShow?: boolean) => {
+	toggleSlideVerifyDialog = (isShow?: boolean) => {
 		if (isShow !== undefined) {
-			this.isShowSwipeVerifyDialog = isShow;
+			this.isShowSlideVerifyDialog = isShow;
 			return;
 		}
-		this.isShowSwipeVerifyDialog = !this.isShowSwipeVerifyDialog;
+		this.isShowSlideVerifyDialog = !this.isShowSlideVerifyDialog;
 	};
 }
 
