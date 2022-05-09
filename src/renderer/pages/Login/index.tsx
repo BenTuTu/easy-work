@@ -25,26 +25,11 @@ function Login() {
 	const navigateTo = useNavigate();
 
 	const login = async () => {
-		try {
-			if (!isValidate) {
-				enqueueSnackbar('请检查输入', { variant: 'error' });
-				return;
-			}
-			const params = {
-				username,
-				password,
-			};
-			await UserService.login(params);
-
-			toggleSlideVerifyDialog(true);
-
-			// navigateTo('./app', { replace: true });
-			// setIsLogin(true);
-
-			// location.href = '/app';
-		} catch (error: any) {
-			enqueueSnackbar(error?.message || '登录失败', { variant: 'error', autoHideDuration: 2000 });
+		if (!isValidate) {
+			enqueueSnackbar('请检查输入', { variant: 'error' });
+			return;
 		}
+		toggleSlideVerifyDialog(true);
 	};
 
 	const openRegisterDialog = () => {
@@ -82,7 +67,7 @@ function Login() {
 				</Box>
 			</Box>
 			<RegisterDialog />
-			<SlideVerifyDialog />
+			<SlideVerifyDialog username={username} password={password}/>
 		</div>
 	);
 }
