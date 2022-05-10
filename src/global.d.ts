@@ -1,6 +1,7 @@
 interface Window {
 	appVersion: string;
 	ipcRenderer: Electron.IpcRenderer;
+	__store: Store;
 }
 
 declare module '*.json';

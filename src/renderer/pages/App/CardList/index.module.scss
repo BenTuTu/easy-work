@@ -1,0 +1,36 @@
+.title {
+	height: 24px;
+	color: #000000;
+	font-family: Roboto;
+	font-weight: regular;
+	font-size: 20px;
+	line-height: normal;
+	letter-spacing: 0px;
+	text-align: left;
+	margin: 8px 0;
+}
+
+.list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.card {
+	display: flex;
+	width: 282px;
+	height: 244px;
+	border-radius: 8px;
+	background-color: #ffffff;
+	border: 1px solid #0000004c;
+	box-shadow: 2px 6px 4px 0px #0000003f;
+	padding: 20px;
+	transition: transform 0.5s linear;
+
+	&:hover {
+		transform: scale(1.05);
+	}
+}
+
+.projectContent {
+	margin-left: 20px;
+}

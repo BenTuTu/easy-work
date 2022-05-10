@@ -51,7 +51,7 @@ instance.interceptors.response.use(
 	}
 );
 
-const get = (url: string, params: any) => instance.get(url, { params });
+const get = (url: string, params: any = {}) => instance.get(url, { params });
 const post = (url: string, params: any) => instance.post(url, params);
 
 export const http = {

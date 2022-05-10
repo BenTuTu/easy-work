@@ -16,7 +16,7 @@ class DrawItemService implements DragElementItem {
 		Object.assign(this, itemConf);
 		const style: React.CSSProperties = {
 			width: `${Math.ceil(Math.random() * 100)}%`,
-			height: '.5rem',
+			height: '50px',
 			backgroundColor: `rgb(${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)}, ${Math.ceil(
 				Math.random() * 255
 			)})`,

@@ -1,46 +1,51 @@
+$titleBarHeight: 30px;
+$operationsBarHeight: 44px;
+
 .build {
-    
-    width: 100vw;
-    height: 100vh;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: calc(100vh - $titleBarHeight);
 }
 
 .top {
-    width: 100vw;
-    height: .44rem;
+	width: 100%;
+	height: $operationsBarHeight;
 
-    .backHome {
-        font-size: .14rem;
-    }
+	.backHome {
+		font-size: 14px;
+	}
 }
 
 .content {
-    display: flex;
-    height: calc(100vh - .44rem);
-    width: 100vw;
-    overflow: hidden;
+	display: flex;
+	flex: 1;
+	width: 100%;
+	overflow: hidden;
 }
 
 .panel,
 .left,
 .right {
-    height: 100%;
+	height: 100%;
 }
 
 .panel {
-    max-width: 375px;
-    min-width: 375px;
-    color: #ffffff;
-    background-color: green;
+	// max-width: 375px;
+	// min-width: 375px;
+	min-width: 375px;
+	color: #ffffff;
+	background-color: #ffffff;
 }
 
 .left {
-    min-width: 300px;
-    color: #ffffff;
-    background-color: red;
+	min-width: 300px;
+	color: #ffffff;
+	background-color: red;
 }
 
 .right {
-    flex: 1;
-    color: #ffffff;
-    background-color: blue;
+	flex: 1;
+	color: #ffffff;
+	background-color: blue;
 }

@@ -1,26 +1,26 @@
 .elementMenu {
-    width: 100%;
+	width: 100%;
 
-    .itemWrap {
-        position: relative;
-        width: 100%;
-    }
+	.itemWrap {
+		position: relative;
+		width: 100%;
+	}
 
-    .submenuWrap {
-        width: 100%;
-        z-index: 1;
-    }
+	.submenuWrap {
+		width: 100%;
+		z-index: 1;
+	}
 
-    .submenuList {
-        background-color: green;
-    }
+	.submenuList {
+		background-color: green;
+	}
 
-    .menuBtn {
-        width: 100%;
-        font-size: 0.14rem;
-    }
+	.menuBtn {
+		width: 100%;
+		font-size: 14px;
+	}
 
-    .paper {
-        width: 100%;
-    }
+	.paper {
+		width: 100%;
+	}
 }

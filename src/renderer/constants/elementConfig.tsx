@@ -1,4 +1,3 @@
-import React from 'react';
 import { DragElementItem, ItemTypes } from '../typing';
 
 export const ELEMENT_LIST: Partial<DragElementItem>[] = [

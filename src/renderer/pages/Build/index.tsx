@@ -7,14 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import MenuPanel from 'components/MenuPanel';
-import DrawPanel from 'components/DrawPanel';
+import DrawPanel from '@/renderer/components/DropPanel';
 
 import s from './index.module.scss';
-function Build(params: any) {
+
+function Build() {
 	const navigateTo = useNavigate();
+
 	const backHome = useCallback(() => {
 		navigateTo(-1);
-	}, []);
+	}, [navigateTo]);
 
 	return (
 		<section className={s.build}>

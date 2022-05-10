@@ -2,8 +2,10 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 
 import { ItemTypes, DragElementItem } from 'renderer/typing';
+
 import s from './index.module.scss';
-function MenuDragItem({ data }: { data: DragElementItem }) {
+
+function MenuDragItem({ data }: { data: Partial<DragElementItem> }) {
 	const { nodeName } = data || {};
 	const [collected, drag, dragPreview]: any[] = useDrag(
 		() => ({

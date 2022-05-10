@@ -30,6 +30,6 @@ export class UserService {
 	}
 
 	static checkAuth() {
-		return http.get('auth/check', {});
+		return http.get('auth/check');
 	}
 }
