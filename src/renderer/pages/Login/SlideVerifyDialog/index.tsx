@@ -80,6 +80,7 @@ function SlideVerifyDialog(props: userProps) {
 			}, 1000);
 		} catch(error: any) {
 			enqueueSnackbar(error?.message || '登录失败', { variant: 'error', autoHideDuration: 2000 });
+			toggleSlideVerifyDialog(false);
 		}
     };
 
