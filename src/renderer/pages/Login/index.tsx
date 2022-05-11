@@ -24,7 +24,7 @@ function Login() {
 	const { enqueueSnackbar } = useSnackbar();
 	const navigateTo = useNavigate();
 
-	const login = async () => {
+	const login = () => {
 		if (!isValidate) {
 			enqueueSnackbar('请检查输入', { variant: 'error' });
 			return;

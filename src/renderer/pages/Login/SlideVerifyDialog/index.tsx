@@ -28,7 +28,7 @@ export interface DialogTitleProps {
 	onClose: () => void;
 }
 
-export interface userProps {
+export interface UserProps {
 	username: string | undefined,
 	password: string | undefined
 }
@@ -57,7 +57,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 	);
 };
 
-function SlideVerifyDialog(props: userProps) {
+function SlideVerifyDialog(props: UserProps) {
 	const { toggleSlideVerifyDialog, isShowSlideVerifyDialog } = loginStore;
 	const { enqueueSnackbar } = useSnackbar();
 	const navigateTo = useNavigate();
