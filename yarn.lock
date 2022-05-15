@@ -7,6 +7,13 @@
   resolved "https://registry.npmmirror.com/7zip-bin/-/7zip-bin-5.0.3.tgz#bc5b5532ecafd923a61f2fb097e3b108c0106a3f"
   integrity sha512-GLyWIFBbGvpKPGo55JyRZAo4lVbnBiD52cKlw/0Vt+wnmKvWJkpZvsjVoaIolyBXDeAQKSicRtqFNPem9w0WYA==
 
+"@alex_xu/react-slider-vertify@^1.2.0":
+  version "1.2.0"
+  resolved "http://npm.iwgame.com/@alex_xu%2freact-slider-vertify/-/react-slider-vertify-1.2.0.tgz#0d4635df357285d07336d3556041372fb33b083d"
+  integrity sha512-NOrTnEfBgMHQYzDNOi/6kp6fUdeSuZ1mVImNczqzzzQDPiHHV5Sjwnx/vIhfPA79BWZQiM1qVwgUG/heMPn8zQ==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+
 "@ampproject/remapping@^2.1.0":
   version "2.1.2"
   resolved "https://registry.npmmirror.com/@ampproject/remapping/-/remapping-2.1.2.tgz#4edca94973ded9630d20101cd8559cedb8d8bd34"
@@ -283,6 +290,13 @@
   version "7.17.2"
   resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.17.2.tgz#66f68591605e59da47523c631416b18508779941"
   integrity sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.15.4":
+  version "7.17.9"
+  resolved "http://npm.iwgame.com/@babel%2fruntime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
+  integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
