@@ -29,7 +29,7 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				main: resolve(__dirname, 'index.html'),
-				// vue: resolve(__dirname, "template/index.html"),
+				h5: resolve(__dirname, 'buildPageIframe.html'),
 			},
 			output: {
 				format: 'cjs',

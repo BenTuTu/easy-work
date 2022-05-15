@@ -25,15 +25,16 @@ function Build() {
 					返回
 				</Button>
 			</div>
-			<Split className={s.content} minSize={300} gutterSize={6}>
-				<DndProvider backend={HTML5Backend}>
+			<Split className={s.content} minSize={240} gutterSize={6}>
+				{/* <DndProvider backend={HTML5Backend}>
 					<div className={s.left}>
 						<MenuPanel />
 					</div>
 					<div className={s.panel}>
 						<DrawPanel />
 					</div>
-				</DndProvider>
+				</DndProvider> */}
+				<iframe src="http://localhost:3000/buildPageIframe.html" className={s.iframe} />
 				<div className={s.right}></div>
 			</Split>
 		</section>
