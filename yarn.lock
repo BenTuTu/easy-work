@@ -2629,10 +2629,10 @@ mobx-react@^7.3.0:
   dependencies:
     mobx-react-lite "^3.3.0"
 
-mobx@^6.4.1:
-  version "6.4.1"
-  resolved "https://registry.npmmirror.com/mobx/-/mobx-6.4.1.tgz#c1d0eeb37ceb31bb2020a85f6bf856782d47fe60"
-  integrity sha512-NFXx0uMbGBgsa0uxhH099L8cMuoRQWh01q6Sf0ZX/3hFU7svJ7yfTD+1LnLMa5wzY/b7gImAeMsR1p0wordDnA==
+mobx@6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.6.0.tgz#617ca1f3b745a781fa89c5eb94a773e3cbeff8ae"
+  integrity sha512-MNTKevLH/6DShLZcmSL351+JgiJPO56A4GUpoiDQ3/yZ0mAtclNLdHK9q4BcQhibx8/JSDupfTpbX2NZPemlRg==
 
 ms@2.0.0:
   version "2.0.0"
