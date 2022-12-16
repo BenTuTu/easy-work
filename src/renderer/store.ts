@@ -2,10 +2,11 @@ import { useContext } from 'react';
 import { observable, action, runInAction, makeObservable, toJS } from 'mobx';
 import { MobXProviderContext } from 'mobx-react';
 
-import { UserService } from '@/api/renderer/user';
+import { UserService } from 'api/renderer/user';
 
 import { DragElementData, DragElementItem } from './typing';
 import DrawItemService from './services/drawItem';
+import { BlockManager } from './services/blockManager';
 
 export class Store {
 	@observable panelItemMap: DragElementData = {
@@ -17,9 +18,13 @@ export class Store {
 
 	@observable isLogin = false;
 
+	@observable blockManager;
+
 	constructor() {
 		makeObservable(this);
 		this.checkLogin();
+		this.blockManager = new BlockManager();
+		this.blockManager.registryBlocks();
 
 		if (process.env.NODE_ENV === 'development') {
 			window.__store = this;
@@ -55,6 +60,7 @@ export class Store {
 			len = (this.panelItemMap[parentPos] as DrawItemService).childLength;
 			(this.panelItemMap[parentPos] as DrawItemService).childLength = len + 1;
 		}
+		console.log(toJS(this.panelItemMap));
 	};
 
 	@action

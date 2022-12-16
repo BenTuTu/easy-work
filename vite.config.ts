@@ -22,6 +22,7 @@ export default defineConfig({
 			renderer: resolve(__dirname, 'src/renderer'),
 			components: resolve(__dirname, 'src/renderer/components'),
 			api: resolve(__dirname, 'src/api'),
+			blocks: resolve(__dirname, 'src/renderer/blocks'),
 		},
 	},
 	build: {

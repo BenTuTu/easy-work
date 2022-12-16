@@ -9,10 +9,10 @@ function MenuPanel() {
 	return (
 		<section className={s.menuPanel}>
 			<Paper>
-				<MenuList>
-					<ElementMenu />
-					{/* <ComponentsMenu /> */}
-				</MenuList>
+				{/* <MenuList> */}
+				<ElementMenu />
+				{/* <ComponentsMenu /> */}
+				{/* </MenuList> */}
 			</Paper>
 		</section>
 	);

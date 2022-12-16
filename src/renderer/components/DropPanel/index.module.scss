@@ -1,4 +1,12 @@
 .drawPanel {
-    height: 100%;
-    width: 100%;
+	height: 100%;
+	width: 100%;
+	background-color: #ffffff;
+	overflow-y: auto;
+	// border-radius: 49px;
+	// overflow: hidden;
+
+	&::-webkit-scrollbar {
+		display: none; /* Chrome Safari */
+	}
 }

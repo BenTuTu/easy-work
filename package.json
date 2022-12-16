@@ -9,7 +9,7 @@
 		"@emotion/react": "11.7.0",
 		"@emotion/styled": "11.6.0",
 		"@mui/icons-material": "5.2.1",
-		"@mui/material": "5.2.3",
+		"@mui/material": "^5.11.0",
 		"@types/node": "14.14.35",
 		"@types/react": "17.0.3",
 		"@types/react-dom": "17.0.2",
@@ -130,6 +130,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@alex_xu/react-slider-vertify": "^1.2.0",
+		"@mui/lab": "^5.0.0-alpha.112",
 		"@vitejs/plugin-react": "^1.1.1",
 		"eslint": "^8.14.0"
 	}

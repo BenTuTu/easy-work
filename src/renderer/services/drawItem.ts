@@ -11,9 +11,11 @@ class DrawItemService implements DragElementItem {
 	uuid = '';
 	isCanDrop = false;
 	pos = '';
+	data: any = {};
 
 	constructor(itemConf: DragElementItem) {
 		Object.assign(this, itemConf);
+		console.log('🚀 ~ file: drawItem.ts:17 ~ DrawItemService ~ constructor ~ itemConf', itemConf);
 		const style: React.CSSProperties = {
 			width: `${Math.ceil(Math.random() * 100)}%`,
 			height: '50px',

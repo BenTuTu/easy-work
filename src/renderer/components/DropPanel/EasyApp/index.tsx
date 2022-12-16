@@ -4,8 +4,10 @@ import { observer } from 'mobx-react';
 import EasyView from 'renderer/services/generateView';
 import { Store, useStore } from 'renderer/store';
 import { DragElementItem, DragElementData } from 'renderer/typing';
+import DrawItemService from 'renderer/services/drawItem';
 
 import s from './index.module.scss';
+
 function generateViewList(panelItemMap: DragElementData, targetItem: DragElementItem) {
 	const list = [];
 	const { childLength, pos, uuid } = targetItem || {};
@@ -14,17 +16,17 @@ function generateViewList(panelItemMap: DragElementData, targetItem: DragElement
 	}
 	for (let idx = 1; idx <= childLength; idx++) {
 		const curPos = pos ? `${pos}-${idx}` : idx;
-		const element = panelItemMap[curPos] as DragElementItem;
-		const { childLength: len, uuid: id } = element || {};
+		const blockData = panelItemMap[curPos] as DrawItemService;
+		const { childLength: len, uuid: id } = blockData || {};
 		if (len) {
-			const eleList = generateViewList(panelItemMap, element);
+			const eleList = generateViewList(panelItemMap, blockData);
 			list.push(
-				<EasyView key={id} nodeData={element}>
+				<EasyView key={id} nodeData={blockData}>
 					{eleList}
 				</EasyView>
 			);
 		} else {
-			list.push(<EasyView key={id} nodeData={element} />);
+			list.push(<EasyView key={id} nodeData={blockData} />);
 		}
 	}
 	return [...list];

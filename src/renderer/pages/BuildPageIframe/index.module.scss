@@ -1,46 +1,31 @@
 $titleBarHeight: 30px;
 $operationsBarHeight: 44px;
 
-.build {
+.buildWrap {
 	display: flex;
-	flex-direction: column;
 	width: 100%;
-	height: calc(100vh - $titleBarHeight);
-}
-
-.top {
-	width: 100%;
-	height: $operationsBarHeight;
-
-	.backHome {
-		font-size: 14px;
-	}
-}
-
-.content {
-	display: flex;
-	flex: 1;
-	width: 100%;
-	overflow: hidden;
+	height: 100%;
 }
 
 .panel,
-.left,
-.right {
+.left {
 	height: 100%;
 }
 
 .panel {
-	// max-width: 375px;
-	// min-width: 375px;
-	min-width: 375px;
+	display: flex;
+	justify-content: center;
+	flex: 1;
+	height: 100%;
+	overflow: auto;
 	color: #ffffff;
 	background-color: #ffffff;
+	padding: 0.1rem 0;
 }
 
 .left {
-	min-width: 240px;
-	max-width: 240px;
+	width: 2.4rem;
+	height: 100%;
 	color: #ffffff;
 	background-color: red;
 }

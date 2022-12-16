@@ -12,9 +12,9 @@ const defaultTheme = {
 
 const defaultTitleList = [
 	{
-		title: '工作区(W)',
+		title: '项目页(W)',
 		id: 'file',
-		path: '/',
+		path: '/app',
 	},
 	{
 		title: '历史记录(H)',
@@ -59,7 +59,7 @@ function TitleBar(props: any) {
 						);
 					})}
 				</div>
-				<div>
+				<div className={s.operationItems}>
 					<IconButton className={s.rightBtn} onClick={minClick} component="span">
 						<HorizontalRule className={s.rightIcon} />
 					</IconButton>

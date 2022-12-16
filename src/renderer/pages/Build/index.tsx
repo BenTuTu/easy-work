@@ -1,13 +1,8 @@
 import React, { useCallback } from 'react';
 import Split from 'react-split';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
-
-import MenuPanel from 'components/MenuPanel';
-import DrawPanel from '@/renderer/components/DropPanel';
 
 import s from './index.module.scss';
 
@@ -25,17 +20,11 @@ function Build() {
 					返回
 				</Button>
 			</div>
-			<Split className={s.content} minSize={240} gutterSize={6}>
-				{/* <DndProvider backend={HTML5Backend}>
-					<div className={s.left}>
-						<MenuPanel />
-					</div>
-					<div className={s.panel}>
-						<DrawPanel />
-					</div>
-				</DndProvider> */}
+			<Split sizes={[75, 25]} className={s.content} minSize={240} gutterSize={6}>
 				<iframe src="http://localhost:3000/buildPageIframe.html" className={s.iframe} />
-				<div className={s.right}></div>
+				<div className={s.right}>
+					<p>此处为css可视化区，待开发</p>
+				</div>
 			</Split>
 		</section>
 	);

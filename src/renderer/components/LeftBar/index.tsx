@@ -6,7 +6,8 @@ function LeftBar() {
 	return (
 		<div className={s.leftBar}>
 			<section className={s.logo}>
-				<img src="assets/renderer/ezw.png" alt="" />
+				{/* <img src="assets/renderer/ezw.png" alt="" /> */}
+				<section className={`${s.ezw} ${s.ezwReflect}`}>EZW</section>
 			</section>
 			<section className={s.icons}>
 				<NavLink to="/build" className={s.toBuild}>

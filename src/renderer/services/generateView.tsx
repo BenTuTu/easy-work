@@ -7,60 +7,12 @@ import { DragElementItem, ItemTypes } from '../typing';
 import DrawItemService from './drawItem';
 
 import s from './index.module.scss';
-interface RenderProps {
-	[ele: string]: { render(props: any, ref: any, children: React.ReactNode): React.ReactNode };
-}
-const MENU_ITEM_SCHEMA: RenderProps = {
-	div: {
-		render(props: any, ref, children) {
-			const { handlerId, ...others } = props;
-
-			return (
-				<div className={s.baseComponent} {...others} ref={ref} data-handler-id={handlerId}>
-					{children}
-				</div>
-			);
-		},
-	},
-	span: {
-		render(props: any, ref, children) {
-			const { handlerId, ...others } = props;
-
-			return (
-				<span {...others} ref={ref} data-handler-id={handlerId}>
-					{children}
-				</span>
-			);
-		},
-	},
-};
-// const CanDrop = forwardRef<HTMLDivElement, any>(function CanDrop(
-// 	{ isOver, isOverCurrent, connectDropTarget, item, dropItem, ele },
-// 	ref
-// ) {
-// 	const { addItem, panelItemMap } = useStore() as Store;
-// 	useImperativeHandle(
-// 		ref as any,
-// 		() => ({
-// 			onDrop: (onChild: boolean) => {
-// 				if (onChild) {
-// 					return;
-// 				}
-// 				const pos = `${dropItem.pos}-${dropItem.childLength + 1}`;
-// 				const itemObj = new DrawItemService({ ...item, pos });
-// 				addItem(itemObj, dropItem.pos);
-// 			},
-// 		}),
-// 		[item, dropItem]
-// 	);
-// 	return connectDropTarget(ele);
-// });
 
 function GenerateView({ nodeData, children }: React.PropsWithChildren<{ nodeData: DrawItemService }>) {
-	const { moveItem } = useStore() as Store;
+	const { moveItem, blockManager } = useStore() as Store;
 
 	const ref = useRef<HTMLDivElement>(null);
-	const { nodeName, isCanDrop, type, props, pos } = nodeData || {};
+	const { nodeName, isCanDrop, type, props, pos, data } = nodeData || {};
 	const [{ handlerId }, drop] = useDrop({
 		accept: ItemTypes.BOX,
 		collect(monitor) {
@@ -125,17 +77,19 @@ function GenerateView({ nodeData, children }: React.PropsWithChildren<{ nodeData
 			isDragging: monitor.isDragging(),
 		}),
 	});
-	const nodeSchema = MENU_ITEM_SCHEMA[nodeName];
+	// const nodeSchema = MENU_ITEM_SCHEMA[nodeName];
+	const nodeSchema = blockManager.blocksMap[data.type];
+
 	if (!nodeSchema || !type) {
 		return null;
 	}
 	drag(drop(ref));
 	const opacity = isDragging ? 0 : 1;
-	const style = {
+	props.style = {
 		...props.style,
 		opacity,
 	};
-	const ele = nodeSchema.render({ ...props, handlerId, style } || {}, ref, children) as React.ReactElement<any, any>;
+	const ele = nodeSchema.renderView(nodeData, ref) as React.ReactElement<any, any>;
 
 	return ele;
 	// if (!isCanDrop) {
